@@ -1,0 +1,198 @@
+TESTCASE E:
+This is testcase for making sure we find exact memory so we don't have to create metadata, we just need to change the usage to 1 (used)
+1) malloc 200 byte for char pointer a -> successful malloc
+2) malloc 3000 bytes for int pointer b -> successful malloc
+3) malloc 1 bytes for int poitner x -> successful malloc
+4) malloc 1 bytes for char pointer y -> successful malloc & for testing we can get exact amount of memory for 7) line
+5) free pointer b -> successful free & no merge
+6) free pointer x -> successful free & merge with x
+7) malloc 3017 bytes for char pointer c -> successful malloc & we get exact memory so don't have to create new metadata after
+8) free a, c, y to test 100 times 
+9) get times
+
+actual printout ...
+
+<our first try>
+Test 1/100
+File is memgrind.c, Line: 173
+Memory Inititalized
+
+Malloc was succcessful and new metadata was created, Size allocated: 200
+
+Malloc was succcessful and new metadata was created, Size allocated: 3000
+
+Malloc was succcessful and new metadata was created, Size allocated: 1
+
+Malloc was succcessful and new metadata was created, Size allocated: 1
+
+Free was successful for: 603188
+
+Nothing to merge
+
+Free was successful for: 603d50
+
+Merge was successful
+
+Nothing to merge
+
+Spot was found for the exact size malloced, Size allocated:3017
+
+Free was successful for: 6030b0
+
+Nothing to merge
+
+Free was successful for: 603188
+
+Merge was successful
+
+Nothing to merge
+
+Free was successful for: 603d61
+
+Merge was successful
+
+Merge was successful
+
+
+Test 100/100
+File is memgrind.c, Line: 173
+Malloc was succcessful and new metadata was created, Size allocated: 200
+
+Malloc was succcessful and new metadata was created, Size allocated: 3000
+
+Malloc was succcessful and new metadata was created, Size allocated: 1
+
+Malloc was succcessful and new metadata was created, Size allocated: 1
+
+Free was successful for: 603188
+
+Nothing to merge
+
+Free was successful for: 603d50
+
+Merge was successful
+
+Nothing to merge
+
+Spot was found for the exact size malloced, Size allocated:3017
+
+Free was successful for: 6030b0
+
+Nothing to merge
+
+Free was successful for: 603188
+
+Merge was successful
+
+Nothing to merge
+
+Free was successful for: 603d61
+
+Merge was successful
+
+Merge was successful
+
+<our average time after 100th try> 
+Average time for Test E: 68 microseconds
+
+
+
+
+
+
+TESTCASE F
+This is testcase for making sure when we free the middle one that is used, we merged twice for that.
+( like, usage=0 - usage=1 - usage =0 , and free middle one, so we need to merge twice and make one big memory that usage = 0 )
+
+1) malloc 200 bytes for char pointer x  -> successful malloc
+2) malloc 300 bytes for int pointer y -> successful malloc
+3) malloc 400 bytes for char pointer z -> successful malloc
+4) malloc 1 bytes for char pointer xyz -> successful malloc, and we make this for checking that we merge twice
+5) free x -> no merge
+6) free z -> no merge
+7) free y -> merging twice
+8) malloc 932 bytes for int pointer a -> successful malloc, and we find exact spot ( so change only the usage in metadata) 
+9) free xyz , a -> so we can test 100 times
+
+actual output...
+
+<our first try>
+Test 1/100
+File is memgrind.c, Line: 198
+Memory Inititalized
+
+Malloc was succcessful and new metadata was created, Size allocated: 200
+
+Malloc was succcessful and new metadata was created, Size allocated: 300
+
+Malloc was succcessful and new metadata was created, Size allocated: 400
+
+Malloc was succcessful and new metadata was created, Size allocated: 1
+
+Free was successful for: 6030b0
+
+Nothing to merge
+
+Free was successful for: 6032c4
+
+Nothing to merge
+
+Free was successful for: 603188
+
+Merge was successful
+
+Merge was successful
+
+Nothing to merge
+
+Spot was found for the exact size malloced, Size allocated:932
+
+Free was successful for: 603464
+
+Merge was successful
+
+Free was successful for: 6030b0
+
+Merge was successful
+
+
+Test 100/100
+File is memgrind.c, Line: 198
+Malloc was succcessful and new metadata was created, Size allocated: 200
+
+Malloc was succcessful and new metadata was created, Size allocated: 300
+
+Malloc was succcessful and new metadata was created, Size allocated: 400
+
+Malloc was succcessful and new metadata was created, Size allocated: 1
+
+Free was successful for: 6030b0
+
+Nothing to merge
+
+Free was successful for: 6032c4
+
+Nothing to merge
+
+Free was successful for: 603188
+
+Merge was successful
+
+Merge was successful
+
+Nothing to merge
+
+Spot was found for the exact size malloced, Size allocated:932
+
+Free was successful for: 603464
+
+Merge was successful
+
+Free was successful for: 6030b0
+
+Merge was successful
+
+<our average time after 100th try> 
+Average time for Test F: 78 microseconds
+
+ 
