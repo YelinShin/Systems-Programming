@@ -1,0 +1,94 @@
+Testcase directory tree
+TESTCASE(DIR)
+	ATEST.TXT
+	BTEST.TXT
+	DIR1
+		ATEST.TXT
+		CTEST.TXT
+		DTEST.TXT
+		EMPTYDIR
+		DIR3
+			DIR1
+				BTEST.TXT
+				EMPTY.TXT
+
+
+
+on the monitor, the statement "empty file!" and "empty directory!" should come out for our test case.
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<fileIndex>
+	<word text="apple">
+		<filename="btest.txt">3</file>
+		<filename="atest.txt">1</file>
+	</word>
+	<word text="apple21312">
+		<filename="btest.txt">1</file>
+	</word>
+	<word text="apple3242">
+		<filename="atest.txt">1</file>
+		<filename="btest.txt">1</file>
+	</word>
+	<word text="banana">
+		<filename="btest.txt">1</file>
+	</word>
+	<word text="bannana">
+		<filename="atest.txt">1</file>
+	</word>
+	<word text="cat">
+		<filename="atest.txt">2</file>
+		<filename="btest.txt">1</file>
+		<filename="dtest.txt">1</file>
+	</word>
+	<word text="cat12">
+		<filename="dtest.txt">1</file>
+	</word>
+	<word text="cs214">
+		<filename="btest.txt">2</file>
+		<filename="atest.txt">1</file>
+		<filename="ctest.txt">1</file>
+	</word>
+	<word text="dog">
+		<filename="atest.txt">1</file>
+		<filename="btest.txt">1</file>
+	</word>
+	<word text="dog2124214">
+		<filename="atest.txt">1</file>
+	</word>
+	<word text="hello">
+		<filename="atest.txt">3</file>
+		<filename="btest.txt">2</file>
+		<filename="ctest.txt">1</file>
+		<filename="dtest.txt">1</file>
+	</word>
+	<word text="mouse">
+		<filename="ctest.txt">1</file>
+	</word>
+	<word text="programming">
+		<filename="ctest.txt">2</file>
+	</word>
+	<word text="rutgers">
+		<filename="atest.txt">2</file>
+		<filename="btest.txt">2</file>
+		<filename="ctest.txt">1</file>
+		<filename="dtest.txt">1</file>
+	</word>
+	<word text="world">
+		<filename="atest.txt">3</file>
+		<filename="btest.txt">2</file>
+		<filename="ctest.txt">1</file>
+		<filename="dtest.txt">1</file>
+	</word>
+</fileIndex>
+
+
+
+
+--------------------------------------------------------------------------------
+the larger scale testing and the results ....
+	in a larger scale, it will take much longer time to generate the output file than usual, and also getting the token/sorting the token/inserted in linked list 
+	the output file should be super large
+	it can be run out of memory space to keep all the tokens (it really depend on the token's number) 
+	For example, if the program tokenize all the file in our laptop, it may not handle to make linked list, which means the output file can't be generated
+	
